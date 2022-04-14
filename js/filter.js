@@ -21,19 +21,8 @@ const filterByFeatures = ({offer}) => {
   if (filtersFeatures.length === 0) {
     return true;
   }
-  if (offer.features){
-    return filtersFeatures.every((feature) => offer.features.includes(feature));
-  } else {
-    return false;
-  }
+  return  offer.features ? filtersFeatures.every((feature) => offer.features.includes(feature)) : false;
 };
-
-// const setMapFilters = (cb) => {
-//   filterForm.addEventListener('change', () => {
-//     markerGroup.clearLayers();
-//     cb();
-//   });
-// };
 
 const filterAds = (offers) => offers.filter((offer) => (
   filterHousingType(offer) &&
