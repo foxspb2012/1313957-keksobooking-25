@@ -1,6 +1,5 @@
 import {clearData} from './form.js';
-import {generateAds} from './data.js';
-import {ADS_COUNT, INDEX_RANGES} from './const.js';
+import {INDEX_RANGES} from './const.js';
 
 const getMapData = (onSuccess, onError) => {
   fetch('https://25.javascript.pages.academy/keksobooking/data',
@@ -11,16 +10,12 @@ const getMapData = (onSuccess, onError) => {
     .then((response) => {
       if (response.ok) {
         return response.json();
-      } else {
-        return generateAds();
       }
+      throw new Error();
     })
     .then((data) => {
-      if (data.length >  ADS_COUNT) {
-        onSuccess(data.slice(INDEX_RANGES.start, INDEX_RANGES.end));
-      } else {
-        onSuccess(data);
-      }
+      const shortData = data.slice(INDEX_RANGES.start, INDEX_RANGES.end);
+      onSuccess(shortData);
     })
     .catch(() => {
       onError();
