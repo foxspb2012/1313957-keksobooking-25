@@ -165,6 +165,6 @@ const clickButtonReset = (cb) => {
   });
 };
 
-sendForm(getMessageError, getMessageSuccess);
+sendForm(getMessageSuccess, getMessageError);
 
 export {clickButtonReset, clearData};
